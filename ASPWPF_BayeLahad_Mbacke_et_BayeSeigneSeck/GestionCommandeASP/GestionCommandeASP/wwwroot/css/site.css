@@ -1,0 +1,45 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+  
+}
+
+body {
+    margin-bottom: 70px;
+    justify-content: center;
+    background-color:AliceBlue;
+}
+.contenu{
+    border:0px solid blue;
+    width:140%;
+    margin:auto;
+    padding-left:40%;
+}
+dt {
+    font-family: 'Times New Roman', Times, serif;
+    font-size:20px;
+}
+h4 {
+    font-family: 'Times New Roman', Times, serif;
+    text-align:center;
+}
+h3{
+    font-size:30px;
+}
+footer{
+    margin-bottom:-5%;
+}
+p button {
+    margin-top:3%;
+}
+

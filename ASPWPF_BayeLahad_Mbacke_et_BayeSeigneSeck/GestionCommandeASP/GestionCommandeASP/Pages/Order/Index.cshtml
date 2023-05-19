@@ -1,0 +1,175 @@
+﻿@page
+@model GestionCommandeASP.Pages.Order.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Gerer Vos commandes</h1>
+<style>
+     a{
+          color:green;
+          font-family:'Times New Roman', Times, serif;
+    }
+        th{
+          font-family:'Times New Roman', Times, serif;
+    }
+        h1{
+          font-family:'Times New Roman', Times, serif;
+          text-align:center;
+          font-weight:bold;
+          color:green;
+
+    }
+    #rech{
+             width:60%;
+           
+       }
+       #search{
+            width:50%;
+       }
+        body{
+            background-image:url("images.png");
+          }
+             th{
+          font-family:'Times New Roman', Times, serif;
+          color:white;
+    }
+             td{
+          font-family:'Times New Roman', Times, serif;
+          font-size:20px;
+    }
+    thead{
+        background-color:black;
+    }
+    #btn1{
+        margin-left:27vw;
+        margin-top:-11vh;
+    }
+</style>
+<p>
+    <a asp-page="Create"><button class="btn btn-warning">Creer Une Commande</button></a>
+</p>
+
+ <nav class="navbar navbar-expand-sm bg-white navbar-white">
+            <form  id="rech" class="form-inline" >
+              <input class="form-control mr-sm-2"  id="search"  type="text" asp-for="Customer"  placeholder="Rechercher Un Client...">
+              <button class="btn btn-success" id="btn1" type="submit">Rechercher</button>
+            </form>
+        </nav>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Orders[0].CustomerID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Orders[0].EmployeeID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Orders[0].OrderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Orders[0].RequiredDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Orders[0].ShippedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Orders[0].ShipVia)
+            </th>
+           <!--  <th>
+                @Html.DisplayNameFor(model => model.Orders[0].Freight)
+            </th>
+           <th>
+                @Html.DisplayNameFor(model => model.Orders[0].ShipName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Orders[0].ShipAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Orders[0].ShipCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Orders[0].ShipRegion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Orders[0].ShipPostalCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Orders[0].ShipCountry)
+            </th>
+            -->
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Orders) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequiredDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShippedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipVia)
+            </td>
+           <!--  <td>
+                @Html.DisplayFor(modelItem => item.Freight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipName)
+            </td>
+           <td>
+                @Html.DisplayFor(modelItem => item.ShipAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipCity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipRegion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipPostalCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipCountry)
+            </td>
+             -->
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.OrderID"><button class="btn btn-success">Edit</button></a> |
+                <a asp-page="./Details" asp-route-id="@item.OrderID"><button class="btn btn-warning">Details</button></a> |
+                <a asp-page="./Delete" asp-route-id="@item.OrderID"><button class="btn btn-danger">Delete</button></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.Orders.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Orders.HasNextPage ? "disabled" : "";
+}
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Orders.PageIndex - 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @prevDisabled">
+    <i class="fa-solid fa-circle-arrow-left"></i>
+</a>
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Orders.PageIndex + 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @nextDisabled">
+   <i class="fa-solid fa-circle-arrow-right"></i>
+</a>

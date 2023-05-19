@@ -1,0 +1,83 @@
+﻿@page
+@model GestionCommandeASP.Pages.Product.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<h
+    1>Edit</h1>
+
+<h4>Products</h4>
+<hr />
+<div class="contenu">
+<div class="row">
+    <div class="col-md-4">
+        <form method="get" action="/Order/Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" name="idprod" asp-for="Products.ProductID" />
+            <div class="form-group">
+               <!-- <label asp-for="Products.ProductName" class="control-label"></label>
+                <input type="hidden" asp-for="Products.ProductName" class="form-control" />
+                <span asp-validation-for="Products.ProductName" class="text-danger"></span>
+            </div>-->
+             <!-- <div class="form-group">
+                <label asp-for="Products.SupplierID" class="control-label"></label>
+                <input type="hidden" asp-for="Products.SupplierID" class="form-control" />
+                <span asp-validation-for="Products.SupplierID" class="text-danger"></span>
+            </div>-->
+                  <!--<div class="form-group">
+                <label asp-for="Products.CategoryID" class="control-label"></label>
+                <input type="hidden" asp-for="Products.CategoryID" class="form-control" />
+                <span asp-validation-for="Products.CategoryID" class="text-danger"></span>
+            </div>-->
+           <!--  <div class="form-group">
+                <label asp-for="Products.QuantityPerUnit" class="control-label"></label>
+                <input value=""  asp-for="Products.QuantityPerUnit" class="form-control" />
+                <span asp-validation-for="Products.QuantityPerUnit" class="text-danger"></span>
+            </div>-->
+            <div class="form-group">
+                <label asp-for="Products.UnitPrice" class="control-label"></label>
+                <input  name="price" asp-for="Products.UnitPrice" class="form-control" />
+                <span asp-validation-for="Products.UnitPrice" class="text-danger"></span>
+            </div>
+          <div class="form-group">
+                <label asp-for="Products.UnitsInStock" class="control-label"></label>
+                <input   name="qte" value="" class="form-control" />
+                <span asp-validation-for="Products.UnitsInStock" class="text-danger"></span>
+            </div>
+            <!--   <div class="form-group">
+                <label asp-for="Products.UnitsOnOrder" class="control-label"></label>
+                <input type="hidden" asp-for="Products.UnitsOnOrder" class="form-control" />
+                <span asp-validation-for="Products.UnitsOnOrder" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Products.ReorderLevel" class="control-label"></label>
+                <input type="hidden" asp-for="Products.ReorderLevel" class="form-control" />
+                <span asp-validation-for="Products.ReorderLevel" class="text-danger"></span>
+            </div>-->
+            <div class="form-group form-check">
+                <label class="form-check-label"> 
+                    <input  class="form-check-input" name="Discontinued" asp-for="Products.Discontinued" />@Html.DisplayNameFor(model => model.Products.Discontinued)
+
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+               
+                <!-- <a asp-page="/Order/Create" asp-route-idprod="@Model.Products.ProductID" asp-route-price="@Model.Products.UnitPrice"  asp-route-qte="@Model.Products.UnitsInStock"  class="btn btn-danger">Ajouter</a>--> 
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<div>
+             <a asp-page="./Index"> <button class="btn btn-warning">Annuler</button></a>
+</div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

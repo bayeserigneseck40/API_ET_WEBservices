@@ -1,0 +1,164 @@
+﻿@page
+@model GestionCommandeASP.Pages.Customer.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Gestion Des Clients</h1>
+<style>
+     a{
+          color:green;
+          font-family:'Times New Roman', Times, serif;
+    }
+        th{
+          font-family:'Times New Roman', Times, serif;
+    }
+        h1{
+          font-family:'Times New Roman', Times, serif;
+          text-align:center;
+          font-weight:bold;
+          color:green;
+
+    }
+    #rech{
+                    width:60%;
+           
+       }
+       #search{
+            width:50%;
+       }
+        body{
+            background-image:url("images.png");
+          }
+             th{
+          font-family:'Times New Roman', Times, serif;
+          color:white;
+    }
+             td{
+          font-family:'Times New Roman', Times, serif;
+          font-size:20px;
+    }
+    thead{
+        background-color:black;
+    }
+    #btn1{
+        margin-left:27vw;
+        margin-top:-11vh;
+    }
+</style>
+
+
+<p>
+    <a asp-page="Create">Ajouter un client</a>
+</p>
+<nav class="navbar navbar-expand-sm bg-white navbar-white">
+            <form  id="rech" class="form-inline" >
+              <input class="form-control mr-sm-2"  id="search"  type="text" asp-for="CustomerID"  placeholder="Rechercher Un Client...">
+              <button class="btn btn-success" id="btn1" type="submit">Rechercher</button>
+            </form>
+        </nav>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Customers[0].CustomerID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customers[0].CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customers[0].ContactName)
+            </th>
+           <!-- <th>
+                @Html.DisplayNameFor(model => model.Customers[0].ContactTitle)
+            </th>-->
+            <th>
+                @Html.DisplayNameFor(model => model.Customers[0].Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customers[0].City)
+            </th>
+           <!-- <th>
+                @Html.DisplayNameFor(model => model.Customers[0].Region)
+            </th>-->
+            <th>
+                @Html.DisplayNameFor(model => model.Customers[0].PostalCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customers[0].Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customers[0].Phone)
+            </th>
+            <!--
+            <th>
+                @Html.DisplayNameFor(model => model.Customers[0].Fax)
+            </th>-->
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Customers) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerID)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactName)
+            </td>
+           <!-- <td>
+                @Html.DisplayFor(modelItem => item.ContactTitle)
+            </td>-->
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+           <!-- <td>
+                @Html.DisplayFor(modelItem => item.Region)
+            </td>-->
+            <td>
+                @Html.DisplayFor(modelItem => item.PostalCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+           <!-- <td>
+                @Html.DisplayFor(modelItem => item.Fax)
+            </td>-->
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.CustomerID"><button class="btn btn-success" >Edit</button></a> <br/>
+                <a asp-page="./Details" asp-route-id="@item.CustomerID"><button class="btn btn-warning" >Details</button></a><br/> 
+                <a asp-page="./Delete" asp-route-id="@item.CustomerID"><button class="btn btn-danger" >Delete</button> </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@{
+    var prevDisabled = !Model.Customers.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Customers.HasNextPage ? "disabled" : "";
+}
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Customers.PageIndex - 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @prevDisabled">
+    <i class="fa-solid fa-circle-arrow-left"></i>
+</a>
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Customers.PageIndex + 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @nextDisabled">
+   <i class="fa-solid fa-circle-arrow-right"></i>
+</a>

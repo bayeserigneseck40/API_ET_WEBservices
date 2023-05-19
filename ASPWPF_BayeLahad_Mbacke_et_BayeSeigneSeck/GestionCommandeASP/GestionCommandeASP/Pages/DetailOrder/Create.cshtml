@@ -1,0 +1,50 @@
+﻿@page
+@model GestionCommandeASP.Pages.DetailOrder.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Order_Details</h4>
+<hr />
+<div class="contenu">
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Order_Details.productID" class="control-label"></label>
+                <input asp-for="Order_Details.productID" class="form-control" />
+                <span asp-validation-for="Order_Details.productID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Order_Details.UnitPrice" class="control-label"></label>
+                <input asp-for="Order_Details.UnitPrice" class="form-control" />
+                <span asp-validation-for="Order_Details.UnitPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Order_Details.Quantity" class="control-label"></label>
+                <input asp-for="Order_Details.Quantity" class="form-control" />
+                <span asp-validation-for="Order_Details.Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Order_Details.Discount" class="control-label"></label>
+                <input asp-for="Order_Details.Discount" class="form-control" />
+                <span asp-validation-for="Order_Details.Discount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

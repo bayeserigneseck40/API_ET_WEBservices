@@ -1,0 +1,16 @@
+﻿<Window x:Class="GesCom.PopupQuantity"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GesCom"
+        mc:Ignorable="d"
+        Title="PopupQuantity" Height="350" Width="300">
+    <Grid x:Name="QuantityPopup" >
+        <TextBox Text=" Entrer Une Quantite"  Name="textbox12"  TextWrapping="Wrap" Margin="26,77,26,195" 
+            Foreground="DarkGray"  Background="#FFF6F6F6"  FontSize="15" BorderBrush="{x:Null}"/>
+        <Button Content="Saisir la quantite" HorizontalAlignment="Center" VerticalAlignment="Center"  RenderTransformOrigin="0.558,2.939" Click="Ajouter_quantite" Background="green"
+                FontFamily="Arial"
+                FontSize="20" Height="32"/>
+    </Grid>
+</Window>

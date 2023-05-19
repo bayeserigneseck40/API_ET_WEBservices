@@ -1,0 +1,101 @@
+﻿@page
+@model GestionCommandeASP.Pages.Detail.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Gestion Details Commandes</h1>
+<style>
+    #rech{
+                    width:60%;
+           
+       }
+       #search{
+            width:50%;
+       }
+     a{
+          color:green;
+          font-family:'Times New Roman', Times, serif;
+    }
+        th{
+          font-family:'Times New Roman', Times, serif;
+          color:white;
+    }
+             td{
+          font-family:'Times New Roman', Times, serif;
+          font-size:20px;
+    }
+
+            h1{
+          font-family:'Times New Roman', Times, serif;
+          text-align:center;
+          font-weight:bold;
+          color:green;
+
+    }
+    thead{
+        background-color:black;
+    }
+    #btn1{
+        margin-left:27vw;
+        margin-top:-11vh;
+    }
+</style>
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<nav class="navbar navbar-expand-sm bg-white navbar-white">
+            <form  id="rech" class="form-inline" >
+              <input class="form-control mr-sm-2"  id="search"  type="text" asp-for="Order"  placeholder="Rechercher une commande">
+              <button class="btn btn-success" id="btn1" type="submit">cliquez</button>
+            </form>
+        </nav>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Details[0].OrderID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Details[0].productID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Details[0].UnitPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Details[0].Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Details[0].Discount)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Details) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.productID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discount)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.DetailID"><button class="btn btn-success">Edit</button></a> |
+                <a asp-page="./Details" asp-route-id="@item.DetailID"><button class="btn btn-warning">Details</button></a> |
+                <a asp-page="./Delete" asp-route-id="@item.DetailID"><button class="btn btn-danger">Delete</button></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

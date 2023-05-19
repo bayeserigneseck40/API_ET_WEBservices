@@ -1,0 +1,152 @@
+﻿@page
+@model GestionCommandeASP.Pages.Product.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Gestion Des Produits</h1>
+<style>
+     a{
+          color:green;
+          font-family:'Times New Roman', Times, serif;
+    }
+        th{
+          font-family:'Times New Roman', Times, serif;
+    }
+        h1{
+          font-family:'Times New Roman', Times, serif;
+          text-align:center;
+          font-weight:bold;
+          color:green;
+
+    }
+    #rech{
+                    width:60%;
+           
+       }
+       #search{
+            width:50%;
+       }
+        body{
+            background-image:url("images.png");
+          }
+             th{
+          font-family:'Times New Roman', Times, serif;
+          color:white;
+    }
+             td{
+          font-family:'Times New Roman', Times, serif;
+          font-size:20px;
+    }
+    thead{
+        background-color:black;
+    }
+    #btn1{
+        margin-left:27vw;
+        margin-top:-11vh;
+    }
+</style>
+
+
+<p>
+    <a asp-page="Create"><button class="btn btn-warning">Creer Une Commande</button></a>
+</p>
+<nav class="navbar navbar-expand-sm bg-white navbar-white">
+            <form  id="rech" class="form-inline" >
+              <input class="form-control mr-sm-2"  id="search"  type="text" asp-for="ProductName"  placeholder="Rechercher Un Produit...">
+              <button class="btn btn-success" id="btn1" type="submit">Rechercher</button>
+            </form>
+        </nav>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].ProductName)
+            </th>
+           <!-- <th>
+                @Html.DisplayNameFor(model => model.Products[0].SupplierID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].CategoryID)
+            </th>-->
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].QuantityPerUnit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].UnitPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].UnitsInStock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].UnitsOnOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].ReorderLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].Discontinued)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Products) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+           <!-- <td>
+                @Html.DisplayFor(modelItem => item.SupplierID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryID)
+            </td>
+            -->
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantityPerUnit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitsInStock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitsOnOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReorderLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discontinued)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ProductID" class="btn btn-success">Commander</a> |
+              <!-- <a asp-page="./Details" asp-route-id="@item.ProductID" class="btn btn-warning">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ProductID" class="btn btn-danger">Delete</a>--> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@{
+    var prevDisabled = !Model.Products.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Products.HasNextPage ? "disabled" : "";
+}
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Products.PageIndex - 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @prevDisabled">
+    <i class="fa-solid fa-circle-arrow-left"></i>
+</a>
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Products.PageIndex + 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @nextDisabled">
+   <i class="fa-solid fa-circle-arrow-right"></i>
+</a>
